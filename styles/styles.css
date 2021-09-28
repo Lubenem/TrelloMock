@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
+
+html {
+  scroll-behavior: smooth;
+  background-color: #080b18; }
+
+p {
+  color: aliceblue;
+  font-size: larger; }
+
+.website-title {
+  width: 500px;
+  text-align: center;
+  margin: 20px auto; }
+
+.columns {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  margin: 20px auto; }
+  .columns .task-column {
+    background-color: blue;
+    padding: 20px; }
+    .columns .task-column * {
+      margin: 10px; }
+    .columns .task-column .add-task-button {
+      width: 60%;
+      margin: auto; }

@@ -1,0 +1,43 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: rgb(8, 11, 24);
+}
+
+p {
+  color: aliceblue;
+  font-size: larger;
+}
+
+.website-title {
+  width: 500px;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.columns {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  margin: 20px auto;
+
+  .task-column {
+    background-color: blue;
+    padding: 20px;
+
+    * {
+      margin: 10px;
+    }
+
+    .add-task-button {
+      width: 60%;
+      margin: auto;
+    }
+  }
+}
