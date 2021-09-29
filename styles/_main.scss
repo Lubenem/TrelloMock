@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 html {
@@ -13,6 +12,11 @@ html {
 p {
   color: aliceblue;
   font-size: larger;
+  text-align: center;
+}
+
+.hiden {
+  display: none;
 }
 
 .website-title {
@@ -24,20 +28,46 @@ p {
 .columns {
   display: flex;
   justify-content: space-around;
-  width: 500px;
+  width: 700px;
   margin: 20px auto;
 
   .task-column {
     background-color: blue;
-    padding: 20px;
+    border-radius: 3px;
+    width: 170px;
 
-    * {
-      margin: 10px;
+    .column-title {
+      margin: 10px 0;
     }
 
-    .add-task-button {
-      width: 60%;
-      margin: auto;
+    .tasks {
+      margin: 5px 0;
+      .task {
+        background-color: gray;
+        margin: 8px;
+        border-radius: 3px;
+      }
+    }
+
+    .add-task-block {
+      margin: 15px 8px;
+      text-align: center;
+
+      .task-text {
+        margin-bottom: 10px;
+      }
+
+      .add-task-button {
+        height: 22px;
+        border-radius: 3px;
+        border: hidden;
+        margin: auto;
+      }
+
+      .add-task-button:hover {
+        background-color: rgb(90, 167, 90);
+        cursor: pointer;
+      }
     }
   }
 }

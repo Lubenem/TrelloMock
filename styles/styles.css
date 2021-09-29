@@ -1,8 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
-  text-align: center; }
+  padding: 0; }
 
 html {
   scroll-behavior: smooth;
@@ -10,7 +9,11 @@ html {
 
 p {
   color: aliceblue;
-  font-size: larger; }
+  font-size: larger;
+  text-align: center; }
+
+.hiden {
+  display: none; }
 
 .website-title {
   width: 500px;
@@ -20,13 +23,30 @@ p {
 .columns {
   display: flex;
   justify-content: space-around;
-  width: 500px;
+  width: 700px;
   margin: 20px auto; }
   .columns .task-column {
     background-color: blue;
-    padding: 20px; }
-    .columns .task-column * {
-      margin: 10px; }
-    .columns .task-column .add-task-button {
-      width: 60%;
-      margin: auto; }
+    border-radius: 3px;
+    width: 170px; }
+    .columns .task-column .column-title {
+      margin: 10px 0; }
+    .columns .task-column .tasks {
+      margin: 5px 0; }
+      .columns .task-column .tasks .task {
+        background-color: gray;
+        margin: 8px;
+        border-radius: 3px; }
+    .columns .task-column .add-task-block {
+      margin: 15px 8px;
+      text-align: center; }
+      .columns .task-column .add-task-block .task-text {
+        margin-bottom: 10px; }
+      .columns .task-column .add-task-block .add-task-button {
+        height: 22px;
+        border-radius: 3px;
+        border: hidden;
+        margin: auto; }
+      .columns .task-column .add-task-block .add-task-button:hover {
+        background-color: #5aa75a;
+        cursor: pointer; }
