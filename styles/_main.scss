@@ -44,6 +44,7 @@ p {
     .tasks {
       margin: 5px 0;
       .task {
+        // pointer-events: none;
         background-color: gray;
         margin: 8px;
         border-radius: 3px;
@@ -53,10 +54,6 @@ p {
         p {
           pointer-events: none;
         }
-      }
-
-      .drag-over {
-        border: 3px dotted rgb(0, 0, 0);
       }
     }
 
@@ -91,5 +88,9 @@ p {
         cursor: pointer;
       }
     }
+  }
+
+  .drag-over {
+    border: 5px dotted rgb(0, 0, 0);
   }
 }

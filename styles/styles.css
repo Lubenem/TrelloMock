@@ -42,8 +42,6 @@ p {
         cursor: move; }
         .columns .task-column .tasks .task p {
           pointer-events: none; }
-      .columns .task-column .tasks .drag-over {
-        border: 3px dotted black; }
     .columns .task-column .add-task-block {
       margin: 15px 10px;
       text-align: center; }
@@ -66,3 +64,5 @@ p {
       .columns .task-column .add-task-block .add-task-button:hover {
         background-color: #5aa75a;
         cursor: pointer; }
+  .columns .drag-over {
+    border: 5px dotted black; }

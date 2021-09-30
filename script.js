@@ -1,15 +1,18 @@
 "use strict";
+
 let tasks;
+let taskColumns;
 let dragSrcEl;
 
 window.onload = function () {
-  let taskColumns = document.querySelectorAll(".task-column");
+  taskColumns = document.querySelectorAll(".task-column");
   taskColumns.forEach((column) => {
     addTaskButton(column);
+    addColumnDragListeners(column);
   });
 
   tasks = document.querySelectorAll(".task");
-  tasks.forEach((task) => addDragListeners(task));
+  tasks.forEach((task) => addTaskDragListeners(task));
 };
 
 function addTaskButton(column) {
@@ -35,41 +38,64 @@ function addTask(column, text) {
                   </div>`;
   let tasks = column.querySelector(".tasks");
   tasks.insertAdjacentHTML("beforeend", newTask);
-  addDragListeners(tasks.lastChild);
+  addTaskDragListeners(tasks.lastChild);
 }
 
 // Drag&Drop
-function addDragListeners(task) {
+function addTaskDragListeners(task) {
   task.addEventListener("dragstart", function (task) {
     this.style.opacity = "0.4";
     dragSrcEl = this;
     task.dataTransfer.effectAllowed = "move";
     task.dataTransfer.setData("text/html", this.innerHTML);
+
+    tasks.forEach(function (task) {
+      // task.style.pointerEvents = "none";
+    });
   });
   task.addEventListener("dragend", function (task) {
     this.style.opacity = "1";
-    tasks.forEach(function (task) {
-      task.classList.remove("drag-over");
+
+    taskColumns.forEach(function (column) {
+      column.classList.remove("drag-over");
     });
   });
   task.addEventListener("dragenter", function (task) {
-    this.classList.add("drag-over");
-  });
-  task.addEventListener("dragleave", function (task) {
-    this.classList.remove("drag-over");
-  });
-  task.addEventListener("drop", function (task) {
     task.stopPropagation();
-    if (dragSrcEl !== this) {
-      dragSrcEl.innerHTML = this.innerHTML;
-      this.innerHTML = task.dataTransfer.getData("text/html");
-    }
-    return false;
-  });
-  task.addEventListener("dragover", function (task) {
     if (task.preventDefault) {
       task.preventDefault();
     }
     return false;
   });
+  // task.addEventListener("dragleave", function (task) {
+  //   this.classList.remove("drag-over");
+  // });
+  // task.addEventListener("drop", function (task) {
+  //   task.stopPropagation();
+  //   if (dragSrcEl !== this) {
+  //     dragSrcEl.innerHTML = this.innerHTML;
+  //     this.innerHTML = task.dataTransfer.getData("text/html");
+  //   }
+  //   return false;
+  // });
+  // task.addEventListener("dragover", function (task) {
+  //   if (task.preventDefault) {
+  //     task.preventDefault();
+  //   }
+  //   return false;
+  // });
+}
+
+function addColumnDragListeners(column) {
+  column.addEventListener("dragstart", function (column) {});
+  column.addEventListener("dragend", function (column) {});
+  column.addEventListener("dragenter", function (column) {
+    if(column.)
+    this.classList.add("drag-over");
+  });
+  column.addEventListener("dragleave", function (column) {
+    this.classList.remove("drag-over");
+  });
+  column.addEventListener("drop", function (column) {});
+  column.addEventListener("dragover", function (column) {});
 }
