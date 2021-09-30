@@ -24,6 +24,7 @@ function addTaskButton(column) {
 }
 
 function addTask(column, text) {
+  if (text === "") return;
   let newTask = `<div class="task">
                     <p>${text}</p>
                   </div>`;
