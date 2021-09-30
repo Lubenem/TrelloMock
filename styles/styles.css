@@ -38,7 +38,12 @@ p {
         background-color: gray;
         margin: 8px;
         border-radius: 3px;
-        padding: 3%; }
+        padding: 3%;
+        cursor: move; }
+        .columns .task-column .tasks .task p {
+          pointer-events: none; }
+      .columns .task-column .tasks .drag-over {
+        border: 3px dotted black; }
     .columns .task-column .add-task-block {
       margin: 15px 10px;
       text-align: center; }

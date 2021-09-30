@@ -48,6 +48,15 @@ p {
         margin: 8px;
         border-radius: 3px;
         padding: 3%;
+        cursor: move;
+
+        p {
+          pointer-events: none;
+        }
+      }
+
+      .drag-over {
+        border: 3px dotted rgb(0, 0, 0);
       }
     }
 
