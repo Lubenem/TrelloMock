@@ -10,10 +10,14 @@ html {
 p {
   color: aliceblue;
   font-size: larger;
-  text-align: center; }
+  text-align: center;
+  pointer-events: none; }
 
 .hiden {
   display: none; }
+
+.block-pointer-events * {
+  pointer-events: painted; }
 
 .website-title {
   width: 500px;
@@ -40,8 +44,6 @@ p {
         border-radius: 3px;
         padding: 3%;
         cursor: move; }
-        .columns .task-column .tasks .task p {
-          pointer-events: none; }
     .columns .task-column .add-task-block {
       margin: 15px 10px;
       text-align: center; }

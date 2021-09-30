@@ -1,18 +1,14 @@
 "use strict";
 
-let tasks;
 let taskColumns;
-let dragSrcEl;
 
 window.onload = function () {
   taskColumns = document.querySelectorAll(".task-column");
   taskColumns.forEach((column) => {
     addTaskButton(column);
-    addColumnDragListeners(column);
   });
 
-  tasks = document.querySelectorAll(".task");
-  tasks.forEach((task) => addTaskDragListeners(task));
+  addDragListeners();
 };
 
 function addTaskButton(column) {
@@ -36,66 +32,69 @@ function addTask(column, text) {
   let newTask = `<div draggable="true" class="task">
                     <p>${text}</p>
                   </div>`;
-  let tasks = column.querySelector(".tasks");
+  var tasks = column.querySelector(".tasks");
   tasks.insertAdjacentHTML("beforeend", newTask);
-  addTaskDragListeners(tasks.lastChild);
 }
 
 // Drag&Drop
-function addTaskDragListeners(task) {
-  task.addEventListener("dragstart", function (task) {
-    this.style.opacity = "0.4";
-    dragSrcEl = this;
-    task.dataTransfer.effectAllowed = "move";
-    task.dataTransfer.setData("text/html", this.innerHTML);
+let dragged;
+let currentColumn;
 
-    tasks.forEach(function (task) {
-      // task.style.pointerEvents = "none";
-    });
-  });
-  task.addEventListener("dragend", function (task) {
-    this.style.opacity = "1";
-
-    taskColumns.forEach(function (column) {
-      column.classList.remove("drag-over");
-    });
-  });
-  task.addEventListener("dragenter", function (task) {
-    task.stopPropagation();
-    if (task.preventDefault) {
-      task.preventDefault();
-    }
-    return false;
-  });
-  // task.addEventListener("dragleave", function (task) {
-  //   this.classList.remove("drag-over");
-  // });
-  // task.addEventListener("drop", function (task) {
-  //   task.stopPropagation();
-  //   if (dragSrcEl !== this) {
-  //     dragSrcEl.innerHTML = this.innerHTML;
-  //     this.innerHTML = task.dataTransfer.getData("text/html");
-  //   }
-  //   return false;
-  // });
-  // task.addEventListener("dragover", function (task) {
-  //   if (task.preventDefault) {
-  //     task.preventDefault();
-  //   }
-  //   return false;
-  // });
-}
-
-function addColumnDragListeners(column) {
-  column.addEventListener("dragstart", function (column) {});
-  column.addEventListener("dragend", function (column) {});
-  column.addEventListener("dragenter", function (column) {
-    if(column.)
-    this.classList.add("drag-over");
-  });
-  column.addEventListener("dragleave", function (column) {
-    this.classList.remove("drag-over");
-  });
-  column.addEventListener("drop", function (column) {});
-  column.addEventListener("dragover", function (column) {});
+function addDragListeners() {
+  document.addEventListener(
+    "dragstart",
+    function (event) {
+      dragged = event.target;
+      dragged.style.opacity = 0.5;
+    },
+    false
+  );
+  document.addEventListener(
+    "dragend",
+    function (event) {
+      dragged.style.opacity = "";
+    },
+    false
+  );
+  document.addEventListener(
+    "dragenter",
+    function (event) {
+      if (event.target.classList.contains("task-column")) {
+        currentColumn = event.target;
+        event.target.style.background = "purple";
+      } else if (event.target.tagName === "BODY") {
+        if (currentColumn != null) currentColumn.style.background = "";
+      }
+      // console.log(event.target.tagName);
+    },
+    false
+  );
+  document.addEventListener(
+    "dragleave",
+    function (event) {
+      // if (event.target.classList.contains("task-column")) dragCounter--;
+      // if (dragCounter === 0) event.target.style.background = "";
+      // console.log(dragCounter);
+    },
+    false
+  );
+  document.addEventListener(
+    "drop",
+    function (event) {
+      event.preventDefault();
+      if (event.target.className == "task-column") {
+        event.target.style.background = "";
+        dragged.parentNode.removeChild(dragged);
+        event.target.querySelector(".tasks").appendChild(dragged);
+      }
+    },
+    false
+  );
+  document.addEventListener(
+    "dragover",
+    function (event) {
+      event.preventDefault();
+    },
+    false
+  );
 }

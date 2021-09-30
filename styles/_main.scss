@@ -13,10 +13,17 @@ p {
   color: aliceblue;
   font-size: larger;
   text-align: center;
+  pointer-events: none;
 }
 
 .hiden {
   display: none;
+}
+
+.block-pointer-events {
+  * {
+    pointer-events: painted;
+  }
 }
 
 .website-title {
@@ -50,10 +57,6 @@ p {
         border-radius: 3px;
         padding: 3%;
         cursor: move;
-
-        p {
-          pointer-events: none;
-        }
       }
     }
 
