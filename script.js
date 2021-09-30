@@ -1,22 +1,31 @@
 "use strict";
 
 window.onload = function () {
-  document
-    .querySelector(".add-task-button")
-    .addEventListener("click", function () {
-      let taskText = document.querySelector(".task-text");
-      if (!taskText.classList.contains("hiden")) {
-        document.querySelector(".task-text").className += " hiden";
-      } else {
-        document.querySelector(".task-text").className = "task-text";
-      }
-    });
+  let taskColumns = document.querySelectorAll(".task-column");
+  taskColumns.forEach((column) => {
+    addTaskButton(column);
+  });
 };
 
-//   "click",
-//   function () {
-//     document.querySelector(".task-text").className += "hiden";
-//     console.log("hello");
-//   },
-//   false
-// );
+function addTaskButton(column) {
+  column
+    .querySelector(".add-task-button")
+    .addEventListener("click", function () {
+      let taskText = column.querySelector(".task-text");
+      if (!taskText.classList.contains("hiden")) {
+        taskText.className += " hiden";
+        addTask(column, taskText.value);
+      } else {
+        taskText.className = "task-text";
+        taskText.value = "";
+        taskText.focus();
+      }
+    });
+}
+
+function addTask(column, text) {
+  let newTask = `<div class="task">
+                    <p>${text}</p>
+                  </div>`;
+  column.querySelector(".tasks").insertAdjacentHTML("beforeend", newTask);
+}

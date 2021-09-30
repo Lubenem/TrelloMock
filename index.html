@@ -12,7 +12,7 @@
     <p class="website-title">Trello Mock</p>
 
     <div class="columns">
-      <div class="task-column">
+      <div id="to-do-column" class="task-column">
         <p class="column-title">ToDo</p>
         <div class="tasks">
           <div class="task">
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="task-column">
+      <div id="in-progress-column" class="task-column">
         <p class="column-title">InProgress</p>
         <div class="tasks">
           <div class="task">
@@ -51,11 +51,17 @@
           </div>
         </div>
         <div class="add-task-block">
+          <textarea
+            name="task-text"
+            class="task-text hiden"
+            placeholder=""
+            rows="4"
+          ></textarea>
           <input type="submit" class="add-task-button" value="+ Add a task" />
         </div>
       </div>
 
-      <div class="task-column">
+      <div id="done-column" class="task-column">
         <p class="column-title">Done</p>
         <div class="tasks">
           <div class="task">
@@ -69,6 +75,12 @@
           </div>
         </div>
         <div class="add-task-block">
+          <textarea
+            name="task-text"
+            class="task-text hiden"
+            placeholder=""
+            rows="4"
+          ></textarea>
           <input type="submit" class="add-task-button" value="+ Add a task" />
         </div>
       </div>
