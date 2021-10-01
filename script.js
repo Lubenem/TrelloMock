@@ -59,22 +59,13 @@ function addDragListeners() {
   document.addEventListener(
     "dragenter",
     function (event) {
-      if (event.target.classList.contains("task-column")) {
-        currentColumn = event.target;
-        event.target.style.background = "purple";
-      } else if (event.target.tagName === "BODY") {
-        if (currentColumn != null) currentColumn.style.background = "";
+      let closestColumn = event.target.closest(".task-column");
+
+      if (closestColumn) {
+        SetDragColumn(closestColumn);
+      } else {
+        SetDragColumn(null);
       }
-      // console.log(event.target.tagName);
-    },
-    false
-  );
-  document.addEventListener(
-    "dragleave",
-    function (event) {
-      // if (event.target.classList.contains("task-column")) dragCounter--;
-      // if (dragCounter === 0) event.target.style.background = "";
-      // console.log(dragCounter);
     },
     false
   );
@@ -82,10 +73,10 @@ function addDragListeners() {
     "drop",
     function (event) {
       event.preventDefault();
-      if (event.target.className == "task-column") {
-        event.target.style.background = "";
+      if (currentColumn) {
         dragged.parentNode.removeChild(dragged);
-        event.target.querySelector(".tasks").appendChild(dragged);
+        currentColumn.querySelector(".tasks").appendChild(dragged);
+        SetDragColumn(null);
       }
     },
     false
@@ -97,4 +88,11 @@ function addDragListeners() {
     },
     false
   );
+}
+
+function SetDragColumn(column) {
+  if (currentColumn === column) return;
+  if (currentColumn) currentColumn.style.background = "";
+  currentColumn = column;
+  if (currentColumn) column.style.background = "purple";
 }
