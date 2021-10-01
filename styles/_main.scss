@@ -42,7 +42,8 @@ p {
     background-color: blue;
     border-radius: 5px;
     width: 170px;
-    height: fit-content;
+    height: max-content;
+    height: -moz-max-content;
 
     .column-title {
       margin: 10px 0;
