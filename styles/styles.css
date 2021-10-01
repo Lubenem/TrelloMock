@@ -69,3 +69,15 @@ p {
         cursor: pointer; }
   .columns .drag-over {
     border: 5px dotted black; }
+
+@media screen and (max-width: 700px) {
+  .website-title {
+    width: auto;
+    margin-bottom: 5px; }
+  .columns {
+    margin-top: 5px;
+    margin: auto;
+    flex-direction: column;
+    width: 80%; }
+    .columns .task-column {
+      margin: 20px auto; } }
