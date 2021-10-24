@@ -2,7 +2,7 @@
 
 let taskColumns;
 
-window.onload = function () {
+window.onload = () => {
   taskColumns = document.querySelectorAll(".task-column");
   taskColumns.forEach((column) => {
     addTaskButton(column);
@@ -16,8 +16,8 @@ function addTaskButton(column) {
     .querySelector(".add-task-button")
     .addEventListener("click", function () {
       let taskText = column.querySelector(".task-text");
-      if (!taskText.classList.contains("hiden")) {
-        taskText.className += " hiden";
+      if (!taskText.classList.contains("hidden")) {
+        taskText.className += " hidden";
         addTask(column, taskText.value);
       } else {
         taskText.className = "task-text";
@@ -28,11 +28,14 @@ function addTaskButton(column) {
 }
 
 function addTask(column, text) {
-  if (text === "") return;
+  if (text.trim() === "") {
+    return;
+  }
+
   let newTask = `<div draggable="true" class="task">
                     <p>${text}</p>
                   </div>`;
-  var tasks = column.querySelector(".tasks");
+  let tasks = column.querySelector(".tasks");
   tasks.insertAdjacentHTML("beforeend", newTask);
 }
 
@@ -91,8 +94,17 @@ function addDragListeners() {
 }
 
 function SetDragColumn(column) {
-  if (currentColumn === column) return;
-  if (currentColumn) currentColumn.style.background = "";
+  if (currentColumn === column) {
+    return;
+  }
+
+  if (currentColumn) {
+    currentColumn.style.background = "";
+  }
+
   currentColumn = column;
-  if (currentColumn) column.style.background = "purple";
+
+  if (currentColumn) {
+    column.style.background = "purple";
+  }
 }
